@@ -1,85 +1,144 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="⚽ 축구선수 하이라이트 추천기",
+    page_title="⚽ 축구선수 추천기",
     page_icon="⚽",
     layout="centered"
 )
 
 players = {
     "메시": {
-        "emoji": "🐐",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg",
+        "video": "https://www.youtube.com/watch?v=RM_5tJncHww",
         "highlight": "2015 바이에른 뮌헨전 보아텡 드리블 골",
-        "personality": "천재형 플레이메이커. 침착하고 창의적이며 경기의 흐름을 지배해요."
+        "personality": "천재형 플레이메이커 🧠",
+        "stats": {
+            "드리블": 5,
+            "패스": 5,
+            "슛": 5,
+            "스피드": 4,
+            "리더십": 5
+        }
     },
+
     "호날두": {
-        "emoji": "🚀",
-        "highlight": "2018 유벤투스전 오버헤드킥",
-        "personality": "노력형 승부사. 자신감이 넘치고 목표를 향해 끝없이 도전해요."
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+        "video": "https://www.youtube.com/watch?v=OUKGsb8CpF8",
+        "highlight": "유벤투스전 오버헤드킥",
+        "personality": "노력형 승부사 🚀",
+        "stats": {
+            "드리블": 4,
+            "패스": 4,
+            "슛": 5,
+            "스피드": 5,
+            "리더십": 5
+        }
     },
-    "음바페": {
-        "emoji": "⚡",
-        "highlight": "2022 월드컵 결승전 해트트릭",
-        "personality": "초고속 공격수. 대담하고 에너지가 넘치며 결정적인 순간에 강해요."
-    },
-    "네이마르": {
-        "emoji": "🎭",
-        "highlight": "산투스 시절 플라멩구전 원더골",
-        "personality": "예술가형 드리블러. 창의적이고 화려한 플레이를 즐겨요."
-    },
+
     "손흥민": {
-        "emoji": "🇰🇷",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Son_Heung-min_2022.jpg",
+        "video": "https://www.youtube.com/watch?v=1kLytk8PqKQ",
         "highlight": "번리전 70m 원더골",
-        "personality": "겸손한 리더. 성실하고 팀을 위해 헌신하는 스타일이에요."
+        "personality": "겸손한 리더 🇰🇷",
+        "stats": {
+            "드리블": 4,
+            "패스": 4,
+            "슛": 5,
+            "스피드": 5,
+            "리더십": 5
+        }
     },
+
+    "음바페": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Kylian_Mbappe_2022.jpg",
+        "video": "https://www.youtube.com/watch?v=R3jK6Vw7zM4",
+        "highlight": "2022 월드컵 결승 해트트릭",
+        "personality": "초고속 공격수 ⚡",
+        "stats": {
+            "드리블": 5,
+            "패스": 4,
+            "슛": 5,
+            "스피드": 5,
+            "리더십": 4
+        }
+    },
+
+    "네이마르": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Neymar_2018.jpg",
+        "video": "https://www.youtube.com/watch?v=Z3J_MCbwaJ0",
+        "highlight": "산투스 시절 원더골",
+        "personality": "예술가형 드리블러 🎭",
+        "stats": {
+            "드리블": 5,
+            "패스": 4,
+            "슛": 4,
+            "스피드": 5,
+            "리더십": 3
+        }
+    },
+
     "홀란드": {
-        "emoji": "🦁",
-        "highlight": "맨시티 데뷔 시즌 5골 경기",
-        "personality": "파괴형 스트라이커. 강력하고 직선적이며 득점 본능이 뛰어나요."
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Erling_Haaland_2023.jpg",
+        "video": "https://www.youtube.com/watch?v=1z4n8XGxG7Y",
+        "highlight": "맨시티 데뷔 시즌 대폭발",
+        "personality": "괴물 스트라이커 🦁",
+        "stats": {
+            "드리블": 4,
+            "패스": 3,
+            "슛": 5,
+            "스피드": 5,
+            "리더십": 4
+        }
     }
 }
 
 st.title("⚽ 축구선수 하이라이트 추천기")
-st.markdown("---")
-
-st.markdown("""
-### 🏟️ 내가 좋아하는 축구선수의 대표 명장면은?
-선수 이름을 입력하면 🔥 레전드 하이라이트와 성향을 알려드려요!
-""")
+st.markdown("### 🌟 좋아하는 축구선수를 입력해보세요!")
 
 player = st.text_input(
-    "✍️ 축구선수 이름 입력",
-    placeholder="예: 메시, 호날두, 손흥민"
+    "✍️ 선수 이름 입력",
+    placeholder="메시, 호날두, 손흥민, 음바페..."
 ).strip()
 
-if st.button("🎬 하이라이트 추천받기"):
+if st.button("🎥 하이라이트 보기"):
     if player in players:
-        data = players[player]
 
         st.balloons()
 
-        st.success("추천 결과가 나왔어요! 🎉")
+        data = players[player]
 
-        st.markdown(f"""
-# {data['emoji']} {player}
+        st.success(f"🎉 {player} 분석 완료!")
 
-## 🎥 대표 하이라이트
-### 🔥 {data['highlight']}
+        st.image(data["image"], use_container_width=True)
 
----
+        st.markdown("---")
 
-## 🧠 성향 분석
-{data['personality']}
+        st.subheader("🔥 대표 하이라이트")
+        st.info(data["highlight"])
 
----
+        st.video(data["video"])
 
-### ⚽ 한 줄 평가
-**{player}는 축구 역사에 이름을 남긴 특별한 선수입니다!**
-""")
+        st.markdown("---")
+
+        st.subheader("🧠 선수 성향")
+        st.write(data["personality"])
+
+        st.markdown("---")
+
+        st.subheader("⭐ 능력치")
+
+        for stat, value in data["stats"].items():
+            st.write(f"{stat} : {'⭐' * value}")
+
+        st.markdown("---")
+
+        st.success(
+            f"⚽ 당신에게 추천하는 하이라이트는 '{data['highlight']}' 입니다!"
+        )
 
     else:
-        st.error("❌ 데이터에 없는 선수입니다.")
-        st.info("현재 지원: 메시, 호날두, 음바페, 네이마르, 손흥민, 홀란드")
+        st.error("❌ 지원하지 않는 선수입니다.")
+        st.info("현재 지원 선수: 메시, 호날두, 손흥민, 음바페, 네이마르, 홀란드")
 
 st.markdown("---")
-st.caption("⚽ Football Highlight Finder | Made with Streamlit")
+st.caption("⚽ Football Highlight Recommender")
